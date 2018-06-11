@@ -11,6 +11,8 @@ body {
     width : 320px;
     height : 480px;
     background-color : rgb(30, 30, 30);
+    font-family: Geo;
+    color :rgb(200,200, 100);
 }
 /* id selector : id = game 이라고 지정된 곳에 아래의 속성을 부여 */
 /*  id selector와 class selector를 사용함
@@ -24,6 +26,31 @@ body {
   z-index : 10;
 }
 
-#game.screen.active{
+#game .screen.active{
   display : block; /* 화면에 보여야 할 때 속성*/
+}
+
+#splash-screen{
+  text-align: center;
+  padding-top: 100px;
+}
+
+#splash-screen .continue {
+  cursor: pointer;
+  font-size: 30px;
+}
+.logo{
+  /*쓰고싶은 글꼴 불러와라*/
+  font-family: Slackey;
+  font-size : 60px;
+  line-height: 60px;
+  margin: 0;
+  text-align: center;
+  color:rgb(70, 120, 20);
+  text-shadow: 1px 1px 2px rgb(255, 255, 0),
+              -1px -1px 2px rgb(255, 255, 0),
+              5px 8px 8px rgb(0, 0, 0);
+}
+.no-textshadow .logo {
+  filter: dropshadow(color=#000000,offX=3,offY=3);
 }

@@ -8,7 +8,7 @@ jewel.game = (function(){
     var activeScreen = $("#game.screen.active")[0],
         screen = $("#" + screenId)[0];
     if(activeScreen){
-      dom.removeClass(screen,"active");
+      dom.removeClass(activeScreen,"active");
     }
     dom.addClass(screen, "active");
   }

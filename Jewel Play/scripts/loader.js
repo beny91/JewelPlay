@@ -4,7 +4,7 @@ var jewel = {};
 window.addEventListener("load", function(){
 
   // 동적 로딩을 시작한다.
-  odernizr.load([
+  Modernizr.load([
     {
     // 항상 로드되는 파일들
     load:[

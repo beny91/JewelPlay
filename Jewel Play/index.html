@@ -3,9 +3,22 @@
   <meta charset = "utf-8">
   <title>Jewel Play</title>
 
+  <!-- 특정device 즉 모바일 기기를 위한 전용 스타일 시트 추가. 미디어 쿼리 이용
+  orientation가 portrait는 세로크기가 더 큰것, landscape는 가로크기가 더 큰것!-->
+  <link rel = "stylesheet"
+        href="styles/mobile.css"
+        media = "screen and (max-device-width: 768px)
+                        and (orientation: portrait),
+                 screen and (max-device-width: 1024px)
+                        and (orientation: landscape) "/>
 
-  <!-- link 태그의 rel 특성상 stylesheet를 지정하면 기본적으로 type 특성에
-      text/css  -->
+  <!-- device에 따라 뷰포트를 이용해서 크기를 조절한다.!-->
+  <meta name = "viewport" content="width=device-width, user-scalable=no">
+  <!-- 북마크된 페이자가 홈 화면에서 실행 될때 인터페이스 없이 전체화면으로 실행되게끔한다. !-->
+  <meta name = "apple-mobile-web-app-capable" content="yes" />
+
+  <!-- link 태그의 rel 특성상 stylesheet를 지정하면 기본적으로 type 특성이
+  text/css  !-->
   <link rel="stylesheet" href="styles/main.css" />
   <link rel="stylesheet" href="styles/fontfaces.css"/>
   <script src = "scripts/modernizr.js"></script>
@@ -14,7 +27,12 @@
 <body>
   <div id= "game">
     <div class="screen" id= "splash-screen">
-      <h1 class="logo">Jewel <br/>Warrior</h1>
+      <h2 class="logo">Jewel <br/>Warrior</h2>
+      <ul class="menu">
+        <li><button name="game-screen">시작</button></li>
+        <li><button name="hiscore">최고 점수</button></li>
+        <li><button name="about">게임 정보</button></li>
+        <li><button name="exit-screen">종료</button></li>
       <span class ="continue">계속하려면 탭하세요.</span>
     </div>
 

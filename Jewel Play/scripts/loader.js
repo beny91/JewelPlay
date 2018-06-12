@@ -1,8 +1,13 @@
-var jewel = {};
+var jewel = {
+  screens : {}
+};
 
 // 현재 문서가 완전히 로드될 때까지 기다린다.
 window.addEventListener("load", function(){
 
+Modernizr.addTest("standalone", function(){
+  return (window.navigator.standalone != false);
+});
   // 동적 로딩을 시작한다.
   Modernizr.load([
     {
@@ -11,6 +16,8 @@ window.addEventListener("load", function(){
       "scripts/sizzle.js",
       "scripts/dom.js",
       "scripts/game.js"
+      //"scripts/screen.splash.js"
+    //  "script/screen.main-menu.js"
     ],
     //모든 파일의 로드 및 실행이 완료되면 호출된다.
     complete: function() {

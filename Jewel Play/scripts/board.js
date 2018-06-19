@@ -45,6 +45,11 @@ jewel.board = (function() {
               jewels[x][y] = type;
       }
     }
+
+    // 이동 가능한 블록이 존재할 때까지 다시 그린다.
+    if( !hasMoves()) {
+      fillBoard();
+    }
   }
 
   function getJewel(x,y) {
@@ -185,17 +190,69 @@ jewel.board = (function() {
          type : "move",
          data : moved
        });
+       if(!hasMoves()) {
+         events.push({
+           type : "refill",
+           data : getBoard()
+         });
+       }
        return check(evens);
      }else{
        return events;
      }
    }
  }
+//움직일 수 있는 블록 존재여부
+ function hasMoves() {
+   for (var x = 0; x < cols; x++){
+     for (var y = 0; y < rows; y++) {
+       if (canJewelMove(x,y)){
+         return true;
+       }
+     }
+   }
+   return false;
+ }
+//
+ function canJewelMove(x,y) {
+   return ((x > 0 && canSwap(x, y, x-1, y)) ||
+           (x < cols-1 && canSwap(x, y, x+1, y)) ||
+           (y > 0 && canSwap(x, y, x, y-1))||
+           (y < rows-1 && canSwap(x, y, x, y+1)));
+ }
 
+function getBoard() {
+  var copy = [], x;
+
+  for ( x = 0;  x <clos; x++) {
+    copy[x] = jewels[x].slice(0);
+  }
+  return copy;
+}
+
+function swap(x1, y1, x2, y2, callback) {
+  var temp, events;
+
+  if (canSwap(x1, y1, x2, y2)) {
+    // 두 블록을 교환한다.
+    tmp = getJewel(x1,y1);
+    jewels[x1][y1] = getjewel(x2, y2);
+    jewels[x2][y2] = tmp;
+
+    //게임 보드를 검사하여 변경된 이벤트 목록을 가져온다.
+    events = check();
+
+    callback(events);
+  } else {
+    callback(events);
+  }
+}
 
   return {
     canSwap : canSwap,
     initialize : initialize,
-    print : print;
-  }
+    print : print,
+    getBoard : getBoard,
+    swap : swap
+  };
 })();
